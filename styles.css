@@ -8,7 +8,6 @@ body {
   #app {
     flex: 1;
     display: flex;
-    flex-direction: column;
   }
   
   #left-column, #right-column {
@@ -30,19 +29,5 @@ body {
   
   #comment-button {
     margin-top: 10px;
-  }
-
-  @media only screen and (max-width: 1000px) {
-    #app {
-      flex-direction: row;
-    }
-  
-    #bible-container {
-      width: 100%;
-    }
-  
-    #disqus-container {
-      width: 100%;
-    }
   }
   
