@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Render the Bible chapter in the middle column
             const middleColumn = document.getElementById('middle-column');
             middleColumn.innerHTML = chapter1Text.join('<br>');
+
+            var disqus_config = function () {
+                this.page.url = 'https://braydentodd.github.io/choice-project/';
+                this.page.identifier = 'choice-project';
+            };
   
             // Include Disqus script (replace 'your-disqus-shortname' with your Disqus shortname)
             const disqusScript = document.createElement('script');
