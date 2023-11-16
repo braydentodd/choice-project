@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  console.log('DOMContentLoaded event fired!');
   const appElement = document.getElementById('app');
 
   // Load Bible text from the JSON file
@@ -7,9 +8,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Fetch the Bible chapter content for 1st Timothy chapter 1
   const chapter1Text = bibleText["1Timothy"]["chapter1"];
-
-  const versesElement = document.getElementById('verses');
-  versesElement.innerHTML = chapter1Text.join('<br>');
 
   // Render the Bible chapter in the middle column
   const middleColumn = document.getElementById('middle-column');
