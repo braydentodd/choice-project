@@ -1,40 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded event fired!');
-  
-        var disqus_config = function () {
-            this.page.url = 'https://braydentodd.github.io/choice-project/';
-            this.page.identifier = 'choice-project';
-        };
 
-        // Include Disqus script (replace 'your-disqus-shortname' with your Disqus shortname)
-        const disqusScript = document.createElement('script');
-        disqusScript.src = 'https://choice-project.disqus.com/embed.js';
-        disqusScript.setAttribute('data-timestamp', +new Date());
-        document.head.appendChild(disqusScript);
+    // Get references to the left and right columns
+    const leftColumn = document.getElementById('left-column');
+    const rightColumn = document.getElementById('right-column');
 
-        // Display Disqus comments section
-        const disqusContainer = document.createElement('div');
-        disqusContainer.id = 'disqus_thread';
-        middleColumn.appendChild(disqusContainer);
+    // Include Disqus script (replace 'your-disqus-shortname' with your Disqus shortname)
+    const disqusScript = document.createElement('script');
+    disqusScript.src = 'https://choice-project.disqus.com/embed.js';
+    disqusScript.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(disqusScript);
 
-        // Event listener for highlighting text and adding comments
-        const handleSelection = () => {
-            const selection = window.getSelection();
-            const selectedText = selection.toString().trim();
+    // Display Disqus comments section
+    const disqusContainer = document.createElement('div');
+    disqusContainer.id = 'disqus_thread';
+    rightColumn.appendChild(disqusContainer);
 
-            if (selectedText !== '') {
-                console.log('Selected Text:', selectedText);
-            }
-        };
+    // Event listener for highlighting text and adding comments
+    const handleSelection = () => {
+        const selection = window.getSelection();
+        const selectedText = selection.toString().trim();
 
-        middleColumn.addEventListener('mouseup', handleSelection);
-        middleColumn.addEventListener('touchend', handleSelection);
+        if (selectedText !== '') {
+            console.log('Selected Text:', selectedText);
+        }
+    };
 
-        // Initialize Disqus after Bible text is loaded
-        if (typeof DISQUS !== 'undefined') {
-            DISQUS.reset({
-                reload: true,
-                config: disqusConfig,
-            });
-            }
+    leftColumn.addEventListener('mouseup', handleSelection);
+    leftColumn.addEventListener('touchend', handleSelection);
+
+    // Initialize Disqus after Bible text is loaded
+    if (typeof DISQUS !== 'undefined') {
+        DISQUS.reset({
+            reload: true,
+            config: disqus_config,
+        });
+    }
 });
