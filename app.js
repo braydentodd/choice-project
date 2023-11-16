@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const appElement = document.getElementById('app');
   
     // Fetch the Bible chapter content
-    const chapterResponse = await fetch('http://localhost:3000/api/esv/1+Timothy+1');
+    const chapterResponse = await fetch('https://git.heroku.com/choice-project.git/api/esv/1+Timothy+1');
     const chapterHtml = await chapterResponse.text();
   
     // Render the Bible chapter in the middle column

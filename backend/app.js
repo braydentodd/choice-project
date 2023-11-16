@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const cors = require('cors');
 
 mongoose.connect('mongodb+srv://braydentodd12:blCH12CHEESE@choiceproject.kfvuyuq.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
@@ -14,6 +15,10 @@ const commentSchema = new mongoose.Schema({
 });
 
 const Comment = mongoose.model('Comment', commentSchema);
+
+// Middleware
+app.use(cors()); // Enable CORS
+app.use(express.json());
 
 // Routes
 app.post('/api/comments', async (req, res) => {
