@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
             // Include Disqus script (replace 'your-disqus-shortname' with your Disqus shortname)
             const disqusScript = document.createElement('script');
-            disqusScript.src = 'https://your-disqus-shortname.disqus.com/embed.js';
+            disqusScript.src = 'https://choice-project.disqus.com/embed.js';
             disqusScript.setAttribute('data-timestamp', +new Date());
             document.head.appendChild(disqusScript);
   
