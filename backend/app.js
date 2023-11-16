@@ -3,8 +3,20 @@ const { MongoClient } = require('mongodb');
 const app = express();
 const cors = require('cors');
 
-const mongoUri = 'mongodb+srv://braydentodd12:blCH12./CHEESE@choiceproject.kfvuyuq.mongodb.net/?retryWrites=true&w=majority';
+const mongoUri = 'mongodb+srv://braydentodd12:blCH12CHEESE@choiceproject.kfvuyuq.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Establish a connection to the MongoDB database when the server starts
+let database;
+
+async function connectToDatabase() {
+  await client.connect();
+  database = client.db('choiceproject');
+}
+
+connectToDatabase().then(() => {
+  console.log('Connected to MongoDB');
+});
 
 app.use(cors({ origin: '*' }));
 app.use(express.json());
@@ -13,8 +25,6 @@ app.post('/api/comments', async (req, res) => {
   const { verse, comment } = req.body;
 
   try {
-    await client.connect();
-    const database = client.db('your_database_name');
     const collection = database.collection('comments');
 
     const newComment = { verse, comment };
@@ -24,8 +34,6 @@ app.post('/api/comments', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
-  } finally {
-    await client.close();
   }
 });
 
@@ -33,8 +41,6 @@ app.get('/api/comments/:verse', async (req, res) => {
   const { verse } = req.params;
 
   try {
-    await client.connect();
-    const database = client.db('your_database_name');
     const collection = database.collection('comments');
 
     const comments = await collection.find({ verse }).toArray();
@@ -43,13 +49,18 @@ app.get('/api/comments/:verse', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
-  } finally {
-    await client.close();
   }
 });
 
-const PORT = 5500;
+const PORT = process.env.PORT || 5500;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+});
+
+// Close the MongoDB client when the server is stopped
+process.on('SIGINT', async () => {
+  await client.close();
+  console.log('MongoDB connection closed');
+  process.exit();
 });
