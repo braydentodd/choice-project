@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,26 +10,62 @@
 <body>
   <div id="app">
     <div id="left-column">
-    </div>
-    <div id="middle-column">
+      <!-- Display your Bible text here -->
+      <p data-verse="1">Paul, an apostle of Christ Jesus by command of God our Savior and of Christ Jesus our hope</p>
+      <p data-verse="2">To Timothy, my true child in the faith: Grace, mercy, and peace from God the Father and Christ Jesus our Lord.</p>
+      <p data-verse="3"></p>
+      <p data-verse="4"></p>
+      <p data-verse="5"></p>
+      <p data-verse="6"></p>
+      <p data-verse="7"></p>
+      <p data-verse="8"></p>
+      <p data-verse="9"></p>
+      <p data-verse="10"></p>
+      <p data-verse="11"></p>
+      <p data-verse="12"></p>
+      <p data-verse="13"></p>
+      <p data-verse="14"></p>
+      <p data-verse="15"></p>
+      <p data-verse="16"></p>
+      <p data-verse="17"></p>
+      <p data-verse="18"></p>
+      <p data-verse="19"></p>
+      <p data-verse="20"></p>
+      <!-- Add more verses as needed -->
     </div>
     <div id="right-column">
       <div id="disqus_thread"></div>
-        <script>
-            var disqus_config = function () {
-            this.page.url = 'https://braydentodd.github.io/choice-project/';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = 'choice-project';
-            };
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://choice-project.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
   </div>
   <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOMContentLoaded event fired!');
+
+      // Set up Disqus
+      const disqusShortname = 'choice-project'; // Replace with your Disqus shortname
+
+      // Function to load Disqus comments for a specific verse
+      const loadDisqusComments = (verseNumber) => {
+        DISQUS.reset({
+          reload: true,
+          config: function () {
+            this.page.identifier = `verse-${verseNumber}`;
+            this.page.url = `https://braydentodd.github.io/choice-project/verse-${verseNumber}`; // Replace with your actual URL
+          }
+        });
+      };
+
+      // Event listener for verse selection
+      document.getElementById('left-column').addEventListener('click', (event) => {
+        const selectedVerse = event.target.getAttribute('data-verse');
+        if (selectedVerse) {
+          console.log(`Selected Verse: ${selectedVerse}`);
+          loadDisqusComments(selectedVerse);
+        }
+      });
+    });
+  </script>
+  <script src="https://choice-project.disqus.com/embed.js" async></script>
 </body>
 </html>
