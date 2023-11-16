@@ -35,6 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
   
             middleColumn.addEventListener('mouseup', handleSelection);
             middleColumn.addEventListener('touchend', handleSelection);
+
+            // Initialize Disqus after Bible text is loaded
+            if (typeof DISQUS !== 'undefined') {
+                DISQUS.reset({
+                    reload: true,
+                    config: disqusConfig,
+                });
+             }
         })
         .catch(error => console.error('Error fetching Bible text:', error));
 });
