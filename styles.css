@@ -1,0 +1,37 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  #app {
+    flex: 1;
+    display: flex;
+  }
+  
+  #left-column, #middle-column, #right-column {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  #left-column {
+    background-color: #f0f0f0;
+  }
+  
+  #middle-column {
+    background-color: #ffffff;
+  }
+  
+  #right-column {
+    background-color: #f0f0f0;
+  }
+  
+  #comment-input {
+    width: 100%;
+  }
+  
+  #comment-button {
+    margin-top: 10px;
+  }
+  
