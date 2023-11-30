@@ -31,12 +31,3 @@ body {
     margin-top: 10px;
   }
   
-  #book-selector,
-#chapter-selector {
-  margin-bottom: 10px;
-}
-
-#disqus_thread {
-  display: none; /* Initially hide the Disqus container */
-  /* Add any other styles as needed */
-}

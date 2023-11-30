@@ -23,68 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (selectedText !== '') {
             console.log('Selected Text:', selectedText);
-            // If text is selected, show Disqus container
-            disqusContainer.style.display = 'block';
-          } else {
-            // If no text is selected, hide Disqus container
-            disqusContainer.style.display = 'none';
-          }
+        }
     };
-
-    // Function to load Disqus comments for a specific verse
-    const loadDisqusComments = (selectedBook, selectedChapter) => {
-        const identifier = `${selectedBook}-${selectedChapter}`;
-        
-        DISQUS.reset({
-        reload: true,
-        config: function () {
-            this.page.identifier = identifier;
-            this.page.url = `https://braydentodd.github.io/choice-project/${selectedBook}/${selectedChapter}`;
-        }
-        });
-    };
-
-    // Event listener for verse selection
-    document.getElementById('left-column').addEventListener('click', (event) => {
-        const selectedVerse = event.target.getAttribute('data-verse');
-        if (selectedVerse) {
-        console.log(`Selected Verse: ${selectedVerse}`);
-        loadDisqusComments(selectedVerse);
-        }
-    });
-
-    // Event listener for book and chapter selection
-    const bookSelector = document.getElementById('book-selector');
-    const chapterSelector = document.getElementById('chapter-selector');
-
-    bookSelector.addEventListener('change', updateBibleText);
-    chapterSelector.addEventListener('change', updateBibleText);
-
-    // Function to update the displayed Bible text based on the selected book and chapter
-    function updateBibleText() {
-        const selectedBook = bookSelector.value;
-        const selectedChapter = chapterSelector.value;
-        const selectedChapterData = bibleText[selectedBook][selectedChapter];
-        disqusContainer.style.display = 'none';
-        displayBibleText(selectedChapterData);
-        loadDisqusComments(selectedBook, selectedChapter);
-    }
-
-    function displayBibleText(chapterData) {
-        const leftColumn = document.getElementById('left-column');
-        
-        // Clear existing content in the left column
-        leftColumn.innerHTML = '';
-      
-        // Iterate through verses and add them to the left column
-        for (const verseNumber in chapterData) {
-          const verseText = chapterData[verseNumber];
-          const verseElement = document.createElement('p');
-          verseElement.setAttribute('data-verse', verseNumber);
-          verseElement.textContent = `${verseNumber} ${verseText}`;
-          leftColumn.appendChild(verseElement);
-        }
-      }
 
     leftColumn.addEventListener('mouseup', handleSelection);
     leftColumn.addEventListener('touchend', handleSelection);
@@ -97,5 +37,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-
